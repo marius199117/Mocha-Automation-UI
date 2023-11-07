@@ -1,0 +1,15 @@
+{
+  "name": "mocha-ui-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "all_tests_headless": "npx cypress run --spec cypress/e2e/UI_Test_Cases --headless",
+    "all_tests_headed": "npx cypress run --spec cypress/e2e/UI_Test_Cases --headed --browser chrome"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.10.0"
+  }
+}
