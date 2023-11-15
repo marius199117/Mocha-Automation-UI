@@ -8,11 +8,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-          
+
       # Install NPM dependencies
       - name: Install Dependencies
         run: npm install
-          
+
       # Run Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v4.2.0
@@ -26,14 +26,9 @@ jobs:
           name: cypress-reports
           path: cypress/reports/mochawesome
 
-      # Merge Mochawesome JSON reports
-      - name: Merge JSON Reports
-        run: npx marge cypress/reports/mochawesome/*.json -f merged-report.json
-        working-directory: ${{ github.workspace }}
-
-      # Generate HTML report from merged JSON
+      # Generate HTML report
       - name: Generate HTML Report
-        run: npx marge merged-report.json -f report.html -o cypress/reports/html
+        run: npx marge cypress/reports/mochawesome/*.json -f report.html -o cypress/reports/html
         working-directory: ${{ github.workspace }}
       
       # Upload HTML report
@@ -42,3 +37,4 @@ jobs:
         with:
           name: cypress-html-report
           path: cypress/reports/html
+
