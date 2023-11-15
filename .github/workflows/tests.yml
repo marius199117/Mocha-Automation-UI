@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Install NPM dependencies
       - name: Install Dependencies
@@ -17,4 +17,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4.2.0
         with:
-         command: npx cypress run
+          command: npx cypress run
+
+
