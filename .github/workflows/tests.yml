@@ -14,10 +14,22 @@ jobs:
         uses: cypress-io/github-action@v4.2.0 # use the explicit version number
         with:
           command: npx cypress run
-
-       # Upload Cypress test reports
+          
+      # Upload Cypress test reports
       - name: Upload Test Reports
         uses: actions/upload-artifact@v2
         with:
-         name: cypress-reports
-         path: cypress/reports/mochawesome
+          name: cypress-reports
+          path: cypress/reports/mochawesome
+  
+             # Generate HTML report from Mochawesome JSON
+      - name: Generate HTML Report
+        run: npx marge cypress/reports/mochawesome/*.json -f report.html -o cypress/reports/html
+        working-directory: ${{ github.workspace }}
+    
+    # Upload HTML reports
+      - name: Upload HTML Reports
+        uses: actions/upload-artifact@v2
+        with:
+         name: cypress-html-reports
+         path: cypress/reports/html
